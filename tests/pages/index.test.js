@@ -1,9 +1,9 @@
-import HomePage from 'pages/index';
+import HomePage from 'index';
 import { render, screen } from '@testing-library/react';
 
-describe('HomePage', () => {
-  test('renders a div', () => {
+describe('/', () => {
+  test('renders the homepage component', () => {
     render(<HomePage />);
-    expect(screen.getByText('Home Page')).toBeInTheDocument();
+    expect(screen.getByTestId('homeContainer')).toBeDefined();
   });
 });
