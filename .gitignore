@@ -2,3 +2,4 @@
 .next
 .cov
 node_modules
+.env.local
