@@ -1,4 +1,5 @@
 import TimeStamp from 'Pen/TimeStamp';
+import PropTypes from 'prop-types';
 import Image from 'next/image';
 
 const Pen = ({ createdAt, title, hero, imageDescription, post, author }) => {
@@ -20,6 +21,20 @@ const Pen = ({ createdAt, title, hero, imageDescription, post, author }) => {
     </div>
   );
 };
-//TODO: proptypes
+
+Pen.propTypes = {
+  createdAt: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  hero: PropTypes.shape({
+    fields: PropTypes.shape({
+      file: PropTypes.shape({
+        url: PropTypes.string.isRequired,
+      }),
+    }),
+  }),
+  imageDescription: PropTypes.string.isRequired,
+  post: PropTypes.object.isRequired,
+  author: PropTypes.string.isRequired,
+};
 
 export default Pen;

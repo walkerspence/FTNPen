@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import dateFormat from 'dateformat';
 
 const TimeStamp = ({ utcString }) => {
@@ -7,6 +8,8 @@ const TimeStamp = ({ utcString }) => {
   return <div>{formatted}</div>;
 };
 
-//TODO: proptypes
+TimeStamp.propTypes = {
+  utcString: PropTypes.string.isRequired,
+};
 
 export default TimeStamp;
