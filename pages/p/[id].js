@@ -1,7 +1,6 @@
 import { createClient } from 'contentful';
 import Pen from 'Pen';
 
-// todo: export client from module and import it here so we can mock it directly
 const CLIENT = createClient({
   space: process.env.CONTENTFUL_ID,
   accessToken: process.env.CONTENTFUL_TOKEN,
@@ -22,17 +21,18 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { fields, sys } = await CLIENT.getEntry(params.id);
-  const { createdAt, updatedAt } = sys;
-  const { title, hero, post, byline } = fields;
+  const { createdAt } = sys;
+  const { title, hero, imageDescription, post, author } = fields;
+  // TODO get updatedAt for "last updated at x" section
 
   return {
     props: {
       createdAt,
-      updatedAt,
       title,
       hero,
+      imageDescription,
       post,
-      byline,
+      author,
     },
   };
 }

@@ -1,16 +1,19 @@
-const entries = {
+export const getEntries = jest.fn().mockResolvedValue({
   items: [{ sys: { id: 1 } }, { sys: { id: 2 } }, { sys: { id: 3 } }],
-};
-const entry = {
-  sys: { createdAt: '2021', updatedAt: '2021' },
+});
+
+export const getEntry = jest.fn().mockResolvedValue({
+  sys: { createdAt: new Date('2000 PST').toUTCString() },
   fields: {
     title: 'Test Title',
-    hero: {},
+    hero: { fields: { file: { url: '//test.url' } } },
+    imageDescription: 'Test image description.',
     post: {},
-    byline: 'By Test Byline',
+    author: 'Test Author',
   },
-};
+});
+
 export const createClient = () => ({
-  getEntries: jest.fn().mockResolvedValue(entries),
-  getEntry: jest.fn().mockResolvedValue(entry),
+  getEntries,
+  getEntry,
 });
