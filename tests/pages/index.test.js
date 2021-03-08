@@ -2,8 +2,8 @@ import HomePage from 'index';
 import { render, screen } from '@testing-library/react';
 
 describe('/', () => {
-  test('renders the homepage component', () => {
+  test('renders the blog title', () => {
     render(<HomePage />);
-    expect(screen.getByTestId('homeContainer')).toBeDefined();
+    expect(screen.getByText('FTN Pen')).toBeInTheDocument();
   });
 });

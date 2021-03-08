@@ -1,5 +1,5 @@
 const HomePage = () => {
-  return <div data-testid="homeContainer">Home Page</div>;
+  return <div>FTN Pen</div>;
 };
 
 export default HomePage;
