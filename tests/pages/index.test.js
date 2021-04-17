@@ -1,4 +1,4 @@
-import HomePage from 'index';
+import HomePage from 'pages/index';
 import { render, screen } from '@testing-library/react';
 
 describe('/', () => {

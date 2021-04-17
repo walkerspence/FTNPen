@@ -1,20 +1,16 @@
-jest.mock('contentful');
-jest.mock('next/Image');
-
 import { render, screen } from '@testing-library/react';
 import { getEntries, getEntry } from 'contentful';
-import Pen, { getStaticPaths, getStaticProps } from 'p/[id]';
+import Pen, { getStaticPaths, getStaticProps } from 'pages/p/[id]';
+
+jest.mock('contentful');
+jest.mock('next/Image');
 
 describe('/pen/[id]', () => {
   describe('Server', () => {
     test('getStaticPaths gets correct paths from contentful', async () => {
       const paths = await getStaticPaths();
       const expectedPaths = {
-        paths: [
-          { params: { id: 1 } },
-          { params: { id: 2 } },
-          { params: { id: 3 } },
-        ],
+        paths: [{ params: { id: 1 } }, { params: { id: 2 } }, { params: { id: 3 } }],
         fallback: false,
       };
 
@@ -56,9 +52,7 @@ describe('/pen/[id]', () => {
     });
 
     test('renders the title', () => {
-      expect(
-        screen.getByRole('heading', { name: 'Test Title' }),
-      ).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: 'Test Title' })).toBeInTheDocument();
     });
 
     test('renders the byline', () => {

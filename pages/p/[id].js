@@ -8,10 +8,9 @@ const CLIENT = createClient({
 
 export async function getStaticPaths() {
   const { items: pens } = await CLIENT.getEntries();
-  const pen_ids = pens.map((pen) => pen.sys.id);
-  console.log(pen_ids);
+  const penIds = pens.map((pen) => pen.sys.id);
 
-  const paths = pen_ids.map((id) => ({ params: { id } }));
+  const paths = penIds.map((id) => ({ params: { id } }));
 
   return {
     paths,
