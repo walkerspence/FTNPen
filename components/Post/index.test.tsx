@@ -1,13 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import {
-  testEmbeddedAssetBlock,
-  testHyperlink,
-  testPost,
-  testVimeoHyperlink,
-  testYoutubeHyperlink,
-} from 'tests/utils/contentfulTestData';
-import Post, { getIdFromYoutubeLink } from './Post';
+import { testPost } from 'tests/utils/contentfulTestData';
+import Post from 'Post';
 
 describe('<Post />', () => {
   describe('handles rendering', () => {

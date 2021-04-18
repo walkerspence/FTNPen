@@ -1,6 +1,6 @@
 import React from 'react';
 import TimeStamp from 'Pen/TimeStamp';
-import Post from 'Pen/Post';
+import Post from 'Post';
 import Image from 'next/image';
 import { IPenFields } from 'types/contentfulTypes';
 

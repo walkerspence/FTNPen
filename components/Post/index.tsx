@@ -4,6 +4,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { Node, Inline, Text, Block, BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { IPenFields } from 'types/contentfulTypes';
 import Image from 'next/image';
+import VideoEmbed, { VIDEO_HOSTS } from './VideoEmbed';
 
 interface PostProps {
   post: IPenFields['post'];
@@ -33,34 +34,18 @@ export const getIdFromYoutubeLink = (url: string) =>
 
 const renderLink = (url: string, child: Text, children: ReactNode) => {
   if (child.value === url) {
+    let id: string = '';
+    let host: VIDEO_HOSTS = VIDEO_HOSTS.DEFAULT;
+
     if (url.includes('youtu')) {
-      return (
-        <iframe
-          data-testid="youtube-embed"
-          width="560"
-          height="315"
-          src={`https://www.youtube-nocookie.com/embed/${getIdFromYoutubeLink(url)}`}
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-      );
+      id = getIdFromYoutubeLink(url);
+      host = VIDEO_HOSTS.YOUTUBE;
     }
     if (url.includes('vimeo')) {
-      return (
-        <iframe
-          data-testid="vimeo-embed"
-          src={`https://player.vimeo.com/video/${url.split('/')[3]}?color=ffffff`}
-          title="Vimeo video player"
-          width="640"
-          height="360"
-          frameBorder="0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowFullScreen
-        />
-      );
+      id = url.split('/')[3];
+      host = VIDEO_HOSTS.VIMEO;
     }
+    return <VideoEmbed id={id} host={host} />;
   }
 
   return <a href={url}>{children}</a>;
