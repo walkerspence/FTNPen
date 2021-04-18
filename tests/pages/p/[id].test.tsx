@@ -1,9 +1,16 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { getEntries, getEntry } from 'contentful';
+import { createClient } from 'contentful';
+import { testPost, testHero } from 'tests/utils/contentfulTestData';
 import Pen, { getStaticPaths, getStaticProps } from 'pages/p/[id]';
 
 jest.mock('contentful');
 jest.mock('next/Image');
+
+const { getEntries, getEntry } = createClient({
+  accessToken: 'test-access-token',
+  space: 'test-contentful-id',
+});
 
 describe('/pen/[id]', () => {
   describe('Server', () => {
@@ -18,21 +25,20 @@ describe('/pen/[id]', () => {
       expect(getEntries).toHaveBeenCalledTimes(1);
     });
 
-    test('passes gets correct props from contentful', async () => {
-      const props = await getStaticProps({ params: { id: 1 } });
+    test('gets correct props from contentful', async () => {
+      const props = await getStaticProps({ params: { id: '1' } });
       const expectedProps = {
         props: {
           createdAt: new Date('2000 PST').toUTCString(),
           title: 'Test Title',
-          hero: { fields: { file: { url: '//test.url' } } },
-          imageDescription: 'Test image description.',
-          post: {},
           author: 'Test Author',
+          hero: testHero,
+          post: testPost,
         },
       };
       expect(props).toEqual(expectedProps);
       expect(getEntry).toHaveBeenCalledTimes(1);
-      expect(getEntry).toHaveBeenCalledWith(1);
+      expect(getEntry).toHaveBeenCalledWith('1');
     });
   });
 
@@ -41,13 +47,13 @@ describe('/pen/[id]', () => {
     const props = {
       createdAt: testDate,
       title: 'Test Title',
-      hero: { fields: { file: { url: '//test.url' } } },
-      imageDescription: 'Test image description.',
-      post: {},
+      hero: testHero,
+      post: testPost,
       author: 'Test Author',
     };
 
     beforeEach(() => {
+      // @ts-expect-error
       render(<Pen {...props} />);
     });
 
@@ -64,10 +70,19 @@ describe('/pen/[id]', () => {
     });
 
     test('renders the image with correct props', () => {
-      const image = screen.getByAltText('Test image description.');
+      const image = screen.getByAltText('Test image description') as HTMLImageElement;
 
       expect(image).toBeInTheDocument();
       expect(image.src).toEqual('https://test.url/');
+      expect(image.height).toEqual(150);
+      expect(image.width).toEqual(250);
+    });
+
+    test.todo('renders image title');
+
+    test('renders the post component', () => {
+      const post = screen.getByTestId('postContainer');
+      expect(post).toBeInTheDocument();
     });
   });
 });

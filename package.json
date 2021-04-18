@@ -6,7 +6,6 @@
     "url": "https://github.com/walkerspence/ftnpen.git"
   },
   "description": "Blog using Contentful API to serve markdown articles.",
-  "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
     "test:nocoverage": "jest",
@@ -31,6 +30,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "5.11.9",
     "@testing-library/react": "11.2.3",
+    "@types/dateformat": "^3.0.1",
     "@types/jest": "26.0.22",
     "@types/react": "17.0.3",
     "@typescript-eslint/eslint-plugin": "4.22.0",
