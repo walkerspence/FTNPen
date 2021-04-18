@@ -3,10 +3,15 @@ export const testHero = {
     title: 'Test image title',
     description: 'Test image description',
     file: {
-      url: '//test-image.url',
+      url: '//test-hero-image.url',
       details: { image: { height: '150', width: '250' } },
     },
   },
+  sys: {
+    id: 'test-hero-sys-id',
+    type: 'Asset',
+  },
+  toPlainObject: () => {},
 };
 
 export const testHyperlink = {

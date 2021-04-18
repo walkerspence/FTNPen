@@ -1,32 +1,20 @@
 import React from 'react';
 import TimeStamp from 'Pen/TimeStamp';
 import Post from 'Post';
-import Image from 'next/image';
 import { IPenFields } from 'types/contentfulTypes';
+import ContentImage from 'ContentImage';
 
 interface PenProps extends IPenFields {
   createdAt: string;
 }
 
 const Pen = ({ createdAt, title, hero, post, author }: PenProps) => {
-  const { file, description, title: imageTitle } = hero.fields;
-  const { url, details } = file;
-  const { width, height } = details?.image ?? {
-    width: '100',
-    height: '100',
-  };
-  const absoluteUrl = `https:${url}`;
-  // TODO: wrap with div and use layout fill
-
   return (
     <div>
       <h1>{title}</h1>
       <div>{`By ${author}`}</div>
       <TimeStamp utcString={createdAt} />
-      <div>
-        <Image width={width} height={height} alt={description} src={absoluteUrl} priority />
-        <div>{imageTitle}</div>
-      </div>
+      <ContentImage testId="hero-image" imageAsset={hero} />
       <Post post={post} />
     </div>
   );

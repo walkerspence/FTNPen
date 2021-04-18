@@ -5,7 +5,6 @@ import { testPost, testHero } from 'tests/utils/contentfulTestData';
 import Pen, { getStaticPaths, getStaticProps } from 'pages/p/[id]';
 
 jest.mock('contentful');
-jest.mock('next/Image');
 
 const { getEntries, getEntry } = createClient({
   accessToken: 'test-access-token',
@@ -69,21 +68,9 @@ describe('/pen/[id]', () => {
       expect(screen.getByText('SAT JAN-01-2000 12:00 AM')).toBeInTheDocument();
     });
 
-    describe('renders the hero image', () => {
-      test('renders the image with correct props', () => {
-        const image = screen.getByAltText('Test image description') as HTMLImageElement;
-
-        expect(image).toBeInTheDocument();
-        expect(image.src).toEqual('https://test-image.url/');
-        expect(image.height).toEqual(150);
-        expect(image.width).toEqual(250);
-      });
-
-      test('renders image title', () => {
-        const imageTitle = screen.getByText('Test image title');
-
-        expect(imageTitle).toBeInTheDocument();
-      });
+    test('renders the hero image', () => {
+      const heroImage = screen.getByTestId('hero-image');
+      expect(heroImage).toBeInTheDocument();
     });
 
     test('renders the post component', () => {

@@ -5,10 +5,11 @@ interface ImageMockProps {
   alt: string;
   height: string;
   width: string;
+  priority: boolean;
 }
 
-const Image = ({ src, alt, width, height }: ImageMockProps) => {
-  return <img src={src} alt={alt} width={width} height={height} />;
+const Image = ({ src, alt, width, height, priority }: ImageMockProps) => {
+  return <img data-priority={priority} src={src} alt={alt} width={width} height={height} />;
 };
 
 export default Image;

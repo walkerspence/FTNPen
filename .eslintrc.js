@@ -26,9 +26,10 @@ module.exports = {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
     'prefer-destructuring': ['error', { array: false, object: true }],
-    'react/jsx-filename-extension': [2, { extensions: ['.ts', '.tsx'] }],
+    'react/jsx-filename-extension': ['error', { extensions: ['.ts', '.tsx'] }],
     'import/no-extraneous-dependencies': ['error', { devDependencies: ['**/*.test.ts', '**/*.test.tsx'] }],
-    'react/jsx-props-no-spreading': 0,
+    'react/jsx-props-no-spreading': 'off',
+    'react/require-default-props': 'off',
     'import/extensions': ['error', 'never'],
   },
   settings: {

@@ -7,11 +7,31 @@ export enum VIDEO_HOSTS {
 }
 
 interface VideoEmbedProps {
-  id: string;
-  host: VIDEO_HOSTS;
+  url: string;
 }
 
-const VideoEmbed = ({ id, host }: VideoEmbedProps) => {
+/* regex: https://stackoverflow.com/questions/3452546/how-do-i-get-the-youtube-video-id-from-a-url */
+const getIdFromYoutubeLink = (url: string) =>
+  url.split(/^.*(youtu.be\/|v\/|embed\/|watch\?|youtube.com\/user\/[^#]*#([^/]*?\/)*)\??v?=?([^#&?]*).*/)[3];
+
+const getIdAndHost = (url: string) => {
+  let id: string = '';
+  let host: VIDEO_HOSTS = VIDEO_HOSTS.DEFAULT;
+
+  if (url.includes('youtu')) {
+    id = getIdFromYoutubeLink(url);
+    host = VIDEO_HOSTS.YOUTUBE;
+  }
+  if (url.includes('vimeo')) {
+    id = url.split('/')[3];
+    host = VIDEO_HOSTS.VIMEO;
+  }
+
+  return { id, host };
+};
+
+const VideoEmbed = ({ url }: VideoEmbedProps) => {
+  const { id, host } = getIdAndHost(url);
   let videoSource: string;
 
   switch (host) {

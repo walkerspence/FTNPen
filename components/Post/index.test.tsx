@@ -86,20 +86,9 @@ describe('<Post />', () => {
       expect(blockquoteText.closest('blockquote')).toBeInTheDocument();
     });
 
-    describe('images', () => {
-      test('with correct props', () => {
-        const image = screen.getByAltText('Test embedded image description') as HTMLImageElement;
-
-        expect(image).toBeInTheDocument();
-        expect(image.src).toEqual(`https://test-embedded-image.url/`);
-        expect(image.width).toEqual(50);
-        expect(image.height).toEqual(75);
-      });
-
-      test('with image title', () => {
-        const imageTitle = screen.getByText('Test embedded image title');
-        expect(imageTitle).toBeInTheDocument();
-      });
+    test('images', () => {
+      const embeddedImage = screen.getByTestId('post-image');
+      expect(embeddedImage).toBeInTheDocument();
     });
   });
 });
