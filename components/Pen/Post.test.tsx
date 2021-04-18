@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { testHyperlinkNode, testPost } from 'tests/utils/contentfulTestData';
+import { testEmbeddedAssetBlock, testHyperlinkNode, testPost } from 'tests/utils/contentfulTestData';
 import Post from './Post';
 
 describe('<Post />', () => {
@@ -64,10 +64,10 @@ describe('<Post />', () => {
     });
 
     test('normal links', () => {
-      const hyperlinkTestURL = testHyperlinkNode.content[0].data.uri;
+      const hyperlinkTestURL = testHyperlinkNode.data.uri;
       const hyperlink = screen.getByText('Test hyperlink') as HTMLAnchorElement;
       expect(hyperlink).toBeInTheDocument();
-      expect(hyperlink.href).toEqual(expect.stringContaining(hyperlinkTestURL));
+      expect(hyperlink.href).toEqual(`${hyperlinkTestURL}/`);
     });
 
     test.todo('youtube links as embeds');
@@ -81,6 +81,21 @@ describe('<Post />', () => {
       expect(blockquoteText.closest('blockquote')).toBeInTheDocument();
     });
 
-    test.todo('images');
+    describe('images', () => {
+      test('with correct props', () => {
+        const embeddedImagetestUrl = testEmbeddedAssetBlock.data.target.fields.file.url;
+        const image = screen.getByAltText('Test embedded image description') as HTMLImageElement;
+
+        expect(image).toBeInTheDocument();
+        expect(image.src).toEqual(`https:${embeddedImagetestUrl}/`);
+        expect(image.width).toEqual(50);
+        expect(image.height).toEqual(75);
+      });
+
+      test('with image title', () => {
+        const imageTitle = screen.getByText('Test embedded image title');
+        expect(imageTitle).toBeInTheDocument();
+      });
+    });
   });
 });

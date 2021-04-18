@@ -10,24 +10,40 @@ export const testHero = {
 };
 
 export const testHyperlinkNode = {
-  nodeType: 'paragraph',
+  nodeType: 'hyperlink',
   content: [
     {
-      nodeType: 'hyperlink',
-      content: [
-        {
-          nodeType: 'text',
-          value: 'Test hyperlink',
-          marks: [],
-          data: {},
-        },
-      ],
-      data: {
-        uri: 'https://test.url',
-      },
+      nodeType: 'text',
+      value: 'Test hyperlink',
+      marks: [],
+      data: {},
     },
   ],
-  data: {},
+  data: {
+    uri: 'https://test.url',
+  },
+};
+
+export const testEmbeddedAssetBlock = {
+  nodeType: 'embedded-asset-block',
+  content: [],
+  data: {
+    target: {
+      fields: {
+        title: 'Test embedded image title',
+        description: 'Test embedded image description',
+        file: {
+          url: '//test.url',
+          details: {
+            image: {
+              width: 50,
+              height: 75,
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const testPost = {
@@ -86,7 +102,11 @@ export const testPost = {
       ],
       data: {},
     },
-    testHyperlinkNode,
+    {
+      nodeType: 'paragraph',
+      content: [testHyperlinkNode],
+      data: {},
+    },
     {
       nodeType: 'unordered-list',
       content: [
@@ -225,27 +245,7 @@ export const testPost = {
       ],
       data: {},
     },
-    {
-      nodeType: 'embedded-asset-block',
-      content: [],
-      data: {
-        target: {
-          fields: {
-            title: 'Test embedded image title',
-            description: 'Test embedded image description',
-            file: {
-              url: '//test.url',
-              details: {
-                image: {
-                  width: 750,
-                  height: 1334,
-                },
-              },
-            },
-          },
-        },
-      },
-    },
+    testEmbeddedAssetBlock,
     {
       nodeType: 'paragraph',
       content: [

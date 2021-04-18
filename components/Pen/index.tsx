@@ -10,11 +10,12 @@ interface PenProps extends IPenFields {
 
 const Pen = ({ createdAt, title, hero, post, author }: PenProps) => {
   const { file, description } = hero.fields; // TODO: render image title
-  const { width, height } = file?.details?.image ?? {
-    width: '1000',
-    height: '1000',
+  const { url, details } = file;
+  const { width, height } = details?.image ?? {
+    width: '100',
+    height: '100',
   };
-  const absoluteUrl = `https:${file.url}`;
+  const absoluteUrl = `https:${url}`;
   // TODO: wrap with div and use layout fill
 
   return (
