@@ -1,7 +1,13 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { testEmbeddedAssetBlock, testHyperlinkNode, testPost } from 'tests/utils/contentfulTestData';
-import Post from './Post';
+import {
+  testEmbeddedAssetBlock,
+  testHyperlink,
+  testPost,
+  testVimeoHyperlink,
+  testYoutubeHyperlink,
+} from 'tests/utils/contentfulTestData';
+import Post, { getIdFromYoutubeLink } from './Post';
 
 describe('<Post />', () => {
   describe('handles rendering', () => {
@@ -64,15 +70,20 @@ describe('<Post />', () => {
     });
 
     test('normal links', () => {
-      const hyperlinkTestURL = testHyperlinkNode.data.uri;
       const hyperlink = screen.getByText('Test hyperlink') as HTMLAnchorElement;
       expect(hyperlink).toBeInTheDocument();
-      expect(hyperlink.href).toEqual(`${hyperlinkTestURL}/`);
+      expect(hyperlink.href).toEqual(`https://test.url/`);
     });
 
-    test.todo('youtube links as embeds');
+    test('youtube links as embeds', () => {
+      const youtubeEmbed = screen.getByTestId('youtube-embed') as HTMLIFrameElement;
+      expect(youtubeEmbed.src).toEqual('https://www.youtube-nocookie.com/embed/zqpUQxV4Lmg');
+    });
 
-    test.todo('vimeo links as embeds');
+    test('vimeo links as embeds', () => {
+      const vimeoEmbed = screen.getByTestId('vimeo-embed') as HTMLIFrameElement;
+      expect(vimeoEmbed.src).toEqual('https://player.vimeo.com/video/411598677?color=ffffff');
+    });
 
     test('blockquotes', () => {
       const blockquoteText = screen.getByText('Test block quote');
@@ -83,11 +94,10 @@ describe('<Post />', () => {
 
     describe('images', () => {
       test('with correct props', () => {
-        const embeddedImagetestUrl = testEmbeddedAssetBlock.data.target.fields.file.url;
         const image = screen.getByAltText('Test embedded image description') as HTMLImageElement;
 
         expect(image).toBeInTheDocument();
-        expect(image.src).toEqual(`https:${embeddedImagetestUrl}/`);
+        expect(image.src).toEqual(`https://test-embedded-image.url/`);
         expect(image.width).toEqual(50);
         expect(image.height).toEqual(75);
       });

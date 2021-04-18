@@ -69,16 +69,22 @@ describe('/pen/[id]', () => {
       expect(screen.getByText('SAT JAN-01-2000 12:00 AM')).toBeInTheDocument();
     });
 
-    test('renders the image with correct props', () => {
-      const image = screen.getByAltText('Test image description') as HTMLImageElement;
+    describe('renders the hero image', () => {
+      test('renders the image with correct props', () => {
+        const image = screen.getByAltText('Test image description') as HTMLImageElement;
 
-      expect(image).toBeInTheDocument();
-      expect(image.src).toEqual('https://test.url/');
-      expect(image.height).toEqual(150);
-      expect(image.width).toEqual(250);
+        expect(image).toBeInTheDocument();
+        expect(image.src).toEqual('https://test-image.url/');
+        expect(image.height).toEqual(150);
+        expect(image.width).toEqual(250);
+      });
+
+      test('renders image title', () => {
+        const imageTitle = screen.getByText('Test image title');
+
+        expect(imageTitle).toBeInTheDocument();
+      });
     });
-
-    test.todo('renders image title');
 
     test('renders the post component', () => {
       const post = screen.getByTestId('postContainer');

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Asset } from 'contentful';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { Document, Node, BLOCKS, MARKS } from '@contentful/rich-text-types';
+import { Node, Inline, Text, Block, BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { IPenFields } from 'types/contentfulTypes';
 import Image from 'next/image';
 
@@ -27,9 +27,52 @@ const renderEmbeddedImage = (embeddedAsset: Asset) => {
   );
 };
 
+// https://stackoverflow.com/questions/3452546/how-do-i-get-the-youtube-video-id-from-a-url
+export const getIdFromYoutubeLink = (url: string) =>
+  url.split(/^.*(youtu.be\/|v\/|embed\/|watch\?|youtube.com\/user\/[^#]*#([^/]*?\/)*)\??v?=?([^#&?]*).*/)[3];
+
+const renderLink = (url: string, child: Text, children: ReactNode) => {
+  if (child.value === url) {
+    if (url.includes('youtu')) {
+      return (
+        <iframe
+          data-testid="youtube-embed"
+          width="560"
+          height="315"
+          src={`https://www.youtube-nocookie.com/embed/${getIdFromYoutubeLink(url)}`}
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      );
+    }
+    if (url.includes('vimeo')) {
+      return (
+        <iframe
+          data-testid="vimeo-embed"
+          src={`https://player.vimeo.com/video/${url.split('/')[3]}?color=ffffff`}
+          title="Vimeo video player"
+          width="640"
+          height="360"
+          frameBorder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowFullScreen
+        />
+      );
+    }
+  }
+
+  return <a href={url}>{children}</a>;
+};
+
 const options = {
   renderNode: {
     [BLOCKS.EMBEDDED_ASSET]: (node: Node) => renderEmbeddedImage(node.data.target),
+    [INLINES.HYPERLINK]: (node: Inline | Block, children: ReactNode) => {
+      const child = node.content[0] as Text;
+      return renderLink(node.data.uri, child, children);
+    },
   },
 };
 

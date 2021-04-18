@@ -9,7 +9,7 @@ interface PenProps extends IPenFields {
 }
 
 const Pen = ({ createdAt, title, hero, post, author }: PenProps) => {
-  const { file, description } = hero.fields; // TODO: render image title
+  const { file, description, title: imageTitle } = hero.fields;
   const { url, details } = file;
   const { width, height } = details?.image ?? {
     width: '100',
@@ -23,7 +23,10 @@ const Pen = ({ createdAt, title, hero, post, author }: PenProps) => {
       <h1>{title}</h1>
       <div>{`By ${author}`}</div>
       <TimeStamp utcString={createdAt} />
-      <Image width={width} height={height} alt={description} src={absoluteUrl} priority />
+      <div>
+        <Image width={width} height={height} alt={description} src={absoluteUrl} priority />
+        <div>{imageTitle}</div>
+      </div>
       <Post post={post} />
     </div>
   );

@@ -3,13 +3,13 @@ export const testHero = {
     title: 'Test image title',
     description: 'Test image description',
     file: {
-      url: '//test.url',
+      url: '//test-image.url',
       details: { image: { height: '150', width: '250' } },
     },
   },
 };
 
-export const testHyperlinkNode = {
+export const testHyperlink = {
   nodeType: 'hyperlink',
   content: [
     {
@@ -24,6 +24,36 @@ export const testHyperlinkNode = {
   },
 };
 
+export const testYoutubeHyperlink = {
+  nodeType: 'hyperlink',
+  content: [
+    {
+      nodeType: 'text',
+      value: 'https://www.youtube.com/watch?v=zqpUQxV4Lmg&t=336s',
+      marks: [],
+      data: {},
+    },
+  ],
+  data: {
+    uri: 'https://www.youtube.com/watch?v=zqpUQxV4Lmg&t=336s',
+  },
+};
+
+export const testVimeoHyperlink = {
+  nodeType: 'hyperlink',
+  content: [
+    {
+      nodeType: 'text',
+      value: 'https://vimeo.com/411598677',
+      marks: [],
+      data: {},
+    },
+  ],
+  data: {
+    uri: 'https://vimeo.com/411598677',
+  },
+};
+
 export const testEmbeddedAssetBlock = {
   nodeType: 'embedded-asset-block',
   content: [],
@@ -33,7 +63,7 @@ export const testEmbeddedAssetBlock = {
         title: 'Test embedded image title',
         description: 'Test embedded image description',
         file: {
-          url: '//test.url',
+          url: '//test-embedded-image.url',
           details: {
             image: {
               width: 50,
@@ -104,7 +134,7 @@ export const testPost = {
     },
     {
       nodeType: 'paragraph',
-      content: [testHyperlinkNode],
+      content: [testHyperlink],
       data: {},
     },
     {
@@ -248,42 +278,12 @@ export const testPost = {
     testEmbeddedAssetBlock,
     {
       nodeType: 'paragraph',
-      content: [
-        {
-          nodeType: 'hyperlink',
-          content: [
-            {
-              nodeType: 'text',
-              value: 'https://www.youtube.com/watch?v=zqpUQxV4Lmg&t=336s',
-              marks: [],
-              data: {},
-            },
-          ],
-          data: {
-            uri: 'https://www.youtube.com/watch?v=zqpUQxV4Lmg&t=336s',
-          },
-        },
-      ],
+      content: [testYoutubeHyperlink],
       data: {},
     },
     {
       nodeType: 'paragraph',
-      content: [
-        {
-          nodeType: 'hyperlink',
-          content: [
-            {
-              nodeType: 'text',
-              value: 'https://vimeo.com/411598677',
-              marks: [],
-              data: {},
-            },
-          ],
-          data: {
-            uri: 'https://vimeo.com/411598677',
-          },
-        },
-      ],
+      content: [testVimeoHyperlink],
       data: {},
     },
   ],
