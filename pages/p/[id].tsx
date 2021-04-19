@@ -28,9 +28,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: StaticPropsParams) {
   const { fields, sys }: Entry<IPenFields> = await CLIENT.getEntry(params.id);
-  const { createdAt } = sys;
+  const { createdAt } = sys; // TODO get updatedAt for "last updated at x" section
   const { title, hero, post, author } = fields;
-  // TODO get updatedAt for "last updated at x" section
 
   return {
     props: {

@@ -55,7 +55,6 @@ const VideoEmbed = ({ url }: VideoEmbedProps) => {
       height="360"
       frameBorder="0"
       allow="autoplay; fullscreen; picture-in-picture"
-      allowFullScreen
     />
   );
 };

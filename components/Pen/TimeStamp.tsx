@@ -2,14 +2,15 @@ import React from 'react';
 import dateFormat from 'dateformat';
 
 interface TimeStampProps {
+  className?: string;
   utcString: string;
 }
 
-const TimeStamp = ({ utcString }: TimeStampProps) => {
+const TimeStamp = ({ className, utcString }: TimeStampProps) => {
   const date = new Date(utcString);
   const formatted = dateFormat(date, 'ddd mmm-dd-yyyy h:MM TT').toUpperCase();
 
-  return <div>{formatted}</div>;
+  return <div className={className}>{formatted}</div>;
 };
 
 export default TimeStamp;

@@ -9,15 +9,16 @@ interface PostProps {
   post: IPenFields['post'];
 }
 
-const LinkEmbedHandler = (url: string, child: Text, children: ReactNode) => {
-  if (child.value === url) {
-    return <VideoEmbed url={url} />;
+const LinkEmbedHandler = ({ content, data }: Inline | Block, children: ReactNode) => {
+  const child = content[0] as Text;
+  const { uri } = data;
+  if (child.value === uri) {
+    return <VideoEmbed url={uri} />;
   }
-
-  return <a href={url}>{children}</a>;
+  return <a href={uri}>{children}</a>;
 };
 
-const EmbeddedImage = ({ data }: Node) => {
+const ImageEmbedHandler = ({ data }: Node) => {
   const { target: imageAsset } = data;
   return <ContentImage testId="post-image" imageAsset={imageAsset} />;
 };
@@ -25,11 +26,8 @@ const EmbeddedImage = ({ data }: Node) => {
 const options = {
   // TODO style block quotes as pull quotes
   renderNode: {
-    [BLOCKS.EMBEDDED_ASSET]: EmbeddedImage,
-    [INLINES.HYPERLINK]: (node: Inline | Block, children: ReactNode) => {
-      const child = node.content[0] as Text;
-      return LinkEmbedHandler(node.data.uri, child, children);
-    },
+    [BLOCKS.EMBEDDED_ASSET]: ImageEmbedHandler,
+    [INLINES.HYPERLINK]: LinkEmbedHandler,
   },
 };
 
