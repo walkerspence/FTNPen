@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
-import { IPenFields } from 'types/contentfulTypes';
+import { Asset } from 'contentful';
 
 interface ContentImageProps {
-  imageAsset: IPenFields['hero'];
+  imageAsset: Asset;
   testId: string;
   priority?: boolean;
 }
