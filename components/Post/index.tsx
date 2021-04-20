@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { Node, Inline, Text, Block, BLOCKS, INLINES } from '@contentful/rich-text-types';
+import { Node, Inline, Block, BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { IPenFields } from 'types/contentfulTypes';
 import ContentImage from 'ContentImage';
 import VideoEmbed from './VideoEmbed';
@@ -10,10 +10,12 @@ interface PostProps {
 }
 
 const LinkEmbedHandler = ({ content, data }: Inline | Block, children: ReactNode) => {
-  const child = content[0] as Text;
+  const child = content[0];
   const { uri } = data;
-  if (child.value === uri) {
-    return <VideoEmbed url={uri} />;
+  if ('value' in child) {
+    if (child.value === uri) {
+      return <VideoEmbed url={uri} />;
+    }
   }
   return <a href={uri}>{children}</a>;
 };
