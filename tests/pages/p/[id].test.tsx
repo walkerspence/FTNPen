@@ -4,8 +4,6 @@ import { createClient } from 'contentful';
 import { testPost, testHero } from 'tests/utils/contentfulTestData';
 import Pen, { getStaticPaths, getStaticProps } from 'pages/p/[id]';
 
-jest.mock('contentful');
-
 const { getEntries, getEntry } = createClient({
   accessToken: 'test-access-token',
   space: 'test-contentful-id',

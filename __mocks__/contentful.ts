@@ -1,4 +1,4 @@
-import { testPost, testHero } from 'tests/utils/contentfulTestData'
+import { testPost, testHero } from 'tests/utils/contentfulTestData';
 
 export const getEntries = jest.fn().mockResolvedValue({
   items: [{ sys: { id: 1 } }, { sys: { id: 2 } }, { sys: { id: 3 } }],
@@ -18,4 +18,3 @@ export const createClient = () => ({
   getEntries,
   getEntry,
 });
-
