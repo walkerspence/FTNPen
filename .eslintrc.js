@@ -5,10 +5,6 @@ module.exports = {
     'jest/globals': true,
   },
   extends: ['airbnb', 'plugin:react/recommended', 'plugin:jest/recommended', 'plugin:prettier/recommended'],
-  globals: {
-    testHero: 'readonly',
-    testPost: 'readonly',
-  },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
