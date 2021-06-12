@@ -53,7 +53,7 @@ const VideoEmbed = ({ url }: VideoEmbedProps) => {
         className={styles.video}
         data-testid={`${host}-embed`}
         src={videoSource}
-        title="Vimeo video player"
+        title="Video Player"
         frameBorder="0"
         allow="autoplay; fullscreen; picture-in-picture"
       />
