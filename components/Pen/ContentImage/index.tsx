@@ -1,14 +1,16 @@
 import React from 'react';
 import Image from 'next/image';
 import { Asset } from 'contentful';
+import styles from './ContentImage.module.scss';
 
 interface ContentImageProps {
   imageAsset: Asset;
-  testId: string;
+  testId?: string;
   priority?: boolean;
+  className?: string;
 }
 
-const ContentImage = ({ imageAsset, testId, priority = false }: ContentImageProps) => {
+const ContentImage = ({ className, imageAsset, testId, priority = false }: ContentImageProps) => {
   const { file, title, description } = imageAsset.fields;
   const { url, details } = file;
   const { width, height } = details?.image ?? {
@@ -19,9 +21,9 @@ const ContentImage = ({ imageAsset, testId, priority = false }: ContentImageProp
   const absoluteUrl = `https:${url}`;
 
   return (
-    <div data-testid={testId}>
+    <div className={`${className} ${styles.imageWrapper}`} data-testid={testId}>
       <Image src={absoluteUrl} alt={description} width={width} height={height} priority={priority} />
-      <div>{title}</div>
+      <div className={styles.title}>{title}</div>
     </div>
   );
 };

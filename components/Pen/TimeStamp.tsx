@@ -8,7 +8,7 @@ interface TimeStampProps {
 
 const TimeStamp = ({ className, utcString }: TimeStampProps) => {
   const date = new Date(utcString);
-  const formatted = dateFormat(date, 'ddd mmm-dd-yyyy h:MM TT').toUpperCase();
+  const formatted = dateFormat(date, 'mmm-dd-yyyy h:MM TT').toUpperCase();
 
   return <div className={className}>{formatted}</div>;
 };

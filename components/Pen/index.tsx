@@ -1,8 +1,9 @@
 import React from 'react';
 import TimeStamp from 'Pen/TimeStamp';
-import Post from 'Post';
+import Post from 'Pen/Post';
 import { IPenFields } from 'types/contentfulTypes';
-import ContentImage from 'ContentImage';
+import ContentImage from 'Pen/ContentImage';
+import styles from './Pen.module.scss';
 
 interface PenProps extends IPenFields {
   createdAt: string;
@@ -10,11 +11,19 @@ interface PenProps extends IPenFields {
 
 const Pen = ({ createdAt, title, hero, post, author }: PenProps) => {
   return (
-    <div>
-      <h1>{title}</h1>
-      <div>{`By ${author}`}</div>
-      <TimeStamp utcString={createdAt} />
-      <ContentImage testId="hero-image" imageAsset={hero} />
+    <div className={styles.container}>
+      <div className={styles.headerWrapper}>
+        <ContentImage testId="hero-image" imageAsset={hero} priority />
+        <div className={styles.floatingBox}>
+          <div className={styles.titleWrapper}>
+            <div>
+              <TimeStamp className={styles.timeStamp} utcString={createdAt} />
+              <div className={styles.byline}>{`By ${author}`}</div>
+            </div>
+            <h1 className={styles.title}>{title}</h1>
+          </div>
+        </div>
+      </div>
       <Post post={post} />
     </div>
   );

@@ -1,10 +1,15 @@
+import { Document } from '@contentful/rich-text-types';
+import { Asset } from 'contentful';
+
 export const testHero = {
   fields: {
     title: 'Test image title',
     description: 'Test image description',
     file: {
       url: '//test-hero-image.url',
-      details: { image: { height: '150', width: '250' } },
+      details: { size: 0, image: { height: 150, width: 250 } },
+      fileName: '',
+      contentType: '',
     },
   },
   sys: {
@@ -12,7 +17,7 @@ export const testHero = {
     type: 'Asset',
   },
   toPlainObject: () => {},
-};
+} as Asset;
 
 export const testHyperlink = {
   nodeType: 'hyperlink',
@@ -77,7 +82,7 @@ export const testEmbeddedAssetBlock = {
           },
         },
       },
-    },
+    } as Asset,
   },
 };
 
@@ -292,4 +297,4 @@ export const testPost = {
       data: {},
     },
   ],
-};
+} as Document;

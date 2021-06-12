@@ -1,19 +1,17 @@
 import React from 'react';
-import ContentImage from 'ContentImage';
+import ContentImage from 'Pen/ContentImage';
 import { render, screen } from '@testing-library/react';
 import { testEmbeddedAssetBlock, testHero } from 'tests/utils/contentfulTestData';
 
 describe('<ContentImage />', () => {
   test('renders the image title', () => {
-    // @ts-expect-error
     render(<ContentImage imageAsset={testHero} priority />);
 
     const imageTitle = screen.getByText('Test image title');
     expect(imageTitle).toBeInTheDocument();
   });
 
-  test('renders hero images with correct props', () => {
-    // @ts-expect-error
+  test('renders priority images with correct props', () => {
     render(<ContentImage imageAsset={testHero} priority />);
     const image = screen.getByAltText('Test image description') as HTMLImageElement;
 
@@ -25,7 +23,6 @@ describe('<ContentImage />', () => {
   });
 
   test('renders embedded images with correct props', () => {
-    // @ts-expect-error
     render(<ContentImage imageAsset={testEmbeddedAssetBlock.data.target} />);
 
     const image = screen.getByAltText('Test embedded image description') as HTMLImageElement;

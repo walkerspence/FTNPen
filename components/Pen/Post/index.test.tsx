@@ -1,12 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { testPost } from 'tests/utils/contentfulTestData';
-import Post from 'Post';
+import Post from 'Pen/Post';
 
 describe('<Post />', () => {
   describe('handles rendering', () => {
     beforeEach(() => {
-      // @ts-expect-error
       render(<Post post={testPost} />);
     });
 

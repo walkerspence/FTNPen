@@ -46,11 +46,10 @@ describe('/pen/[id]', () => {
       title: 'Test Title',
       hero: testHero,
       post: testPost,
-      author: 'Test Author',
+      author: 'Test Author' as 'Alex Ramos' | 'Walker Spence',
     };
 
     beforeEach(() => {
-      // @ts-expect-error
       render(<Pen {...props} />);
     });
 

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { Node, Inline, Block, BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { IPenFields } from 'types/contentfulTypes';
-import ContentImage from 'ContentImage';
+import ContentImage from 'Pen/ContentImage';
 import VideoEmbed from './VideoEmbed';
 
 interface PostProps {

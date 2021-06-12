@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './VideoEmbed.module.scss';
 
 export enum VIDEO_HOSTS {
   YOUTUBE = 'youtube',
@@ -47,15 +48,16 @@ const VideoEmbed = ({ url }: VideoEmbedProps) => {
   }
 
   return (
-    <iframe
-      data-testid={`${host}-embed`}
-      src={videoSource}
-      title="Vimeo video player"
-      width="640"
-      height="360"
-      frameBorder="0"
-      allow="autoplay; fullscreen; picture-in-picture"
-    />
+    <div className={styles.container}>
+      <iframe
+        className={styles.video}
+        data-testid={`${host}-embed`}
+        src={videoSource}
+        title="Vimeo video player"
+        frameBorder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+      />
+    </div>
   );
 };
 

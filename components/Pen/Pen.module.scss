@@ -1,0 +1,42 @@
+@use 'styles/colors' as colors;
+
+.container {
+  margin: auto;
+  width: 60vw;
+}
+
+.headerWrapper {
+  position: relative;
+}
+
+.floatingBox {
+  background: colors.$white;
+  border-radius: 5px;
+  bottom: 21px; // height of the img description
+  margin: 32px;
+  padding: 16px;
+  position: absolute;
+  right: 0;
+}
+
+.titleWrapper {
+  align-items: center;
+  display: flex;
+}
+
+.timeStamp {
+  color: colors.$light-gray;
+  white-space: nowrap;
+}
+
+.byline {
+  color: colors.$gray;
+}
+
+.title {
+  color: colors.$dark-gray;
+  margin: 0;
+  margin-left: 32px;
+  text-align: right;
+}
+
