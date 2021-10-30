@@ -4,6 +4,7 @@ import { Node, Inline, Block, BLOCKS, INLINES } from '@contentful/rich-text-type
 import { IPenFields } from 'types/contentfulTypes';
 import ContentImage from 'Pen/ContentImage';
 import VideoEmbed from './VideoEmbed';
+import styles from './Post.module.scss';
 
 interface PostProps {
   post: IPenFields['post'];
@@ -34,7 +35,11 @@ const options = {
 };
 
 const Post = ({ post }: PostProps) => {
-  return <div data-testid="postContainer">{post ? documentToReactComponents(post, options) : ''}</div>;
+  return (
+    <div className={styles.post} data-testid="postContainer">
+      {post ? documentToReactComponents(post, options) : ''}
+    </div>
+  );
 };
 
 export default Post;

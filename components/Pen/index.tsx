@@ -20,7 +20,7 @@ const Pen = ({ createdAt, title, hero, post, author }: PenProps) => {
               <TimeStamp className={styles.timeStamp} utcString={createdAt} />
               <div className={styles.byline}>{`By ${author}`}</div>
             </div>
-            <h1 className={styles.title}>{title}</h1>
+            <h2 className={styles.title}>{title}</h2>
           </div>
         </div>
       </div>

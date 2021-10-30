@@ -1,13 +1,31 @@
 body {
+  background-color: #1a1a1a;
+  color: #fff;
   font-family: 'Amiko', 'Geneva', sans-serif;
   margin: 0;
-  background-color: #1a1a1a;
 }
 
 html {
   font-size: 16px;
 }
 
+h1,
+h2 {
+  margin: 1rem 0;
+}
+
 h1 {
+  font-size: 4rem;
+}
+
+h2 {
   font-size: 2rem;
+}
+
+a {
+  color: #f25a02;
+}
+
+a:visited {
+  color: #a84710;
 }

@@ -1,0 +1,19 @@
+@use 'styles/colors' as colors;
+
+.home {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  color: colors.$white;
+  width: 100vw;
+  height: 100vh;
+}
+
+.centered {
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.title {
+}

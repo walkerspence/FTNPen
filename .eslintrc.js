@@ -5,7 +5,7 @@ module.exports = {
     'jest/globals': true,
   },
   extends: [
-    '',
+    'next/core-web-vitals',
     'eslint-config-airbnb',
     'plugin:react/recommended',
     'plugin:jest/recommended',
@@ -33,6 +33,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',
     'import/extensions': ['error', 'never'],
+    'jsx-a11y/anchor-is-valid': 'off',
   },
   settings: {
     'import/resolver': {
