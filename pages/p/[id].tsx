@@ -22,6 +22,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
+    // TODO add a fallback page
     fallback: false,
   };
 }

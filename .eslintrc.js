@@ -4,7 +4,13 @@ module.exports = {
     es2021: true,
     'jest/globals': true,
   },
-  extends: ['airbnb', 'plugin:react/recommended', 'plugin:jest/recommended', 'plugin:prettier/recommended'],
+  extends: [
+    '',
+    'eslint-config-airbnb',
+    'plugin:react/recommended',
+    'plugin:jest/recommended',
+    'plugin:prettier/recommended',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {

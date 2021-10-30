@@ -48,7 +48,7 @@ const VideoEmbed = ({ url }: VideoEmbedProps) => {
   }
 
   return (
-    <div className={styles.container}>
+    <span className={styles.container}>
       <iframe
         className={styles.video}
         data-testid={`${host}-embed`}
@@ -57,7 +57,7 @@ const VideoEmbed = ({ url }: VideoEmbedProps) => {
         frameBorder="0"
         allow="autoplay; fullscreen; picture-in-picture"
       />
-    </div>
+    </span>
   );
 };
 
